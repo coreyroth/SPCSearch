@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ISearchResultCardProps } from './ISearchResultCardProps';
 import * as strings from 'SpcSearchWebPartStrings';
 import styles from './SearchResultCard.module.scss';
-import { SearchResult } from '@pnp/sp';
 
 import {
     DocumentCard,
@@ -10,10 +9,8 @@ import {
     DocumentCardDetails,
     DocumentCardPreview,
     DocumentCardTitle,
-    IDocumentCardPreviewProps,
     DocumentCardType,
     IDocumentCardActivityPerson,
-    DocumentCardImage,
   } from 'office-ui-fabric-react/lib/DocumentCard';
   import { ImageFit } from 'office-ui-fabric-react/lib/Image';
 
