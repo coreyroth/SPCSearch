@@ -43,6 +43,6 @@ export class SearchResultCard extends React.Component<ISearchResultCardProps, {
                     <DocumentCardActivity activity={this.props.item.Description} people={people} />
                 </DocumentCardDetails>
             </DocumentCard>
-        )
+        );
     }
 }
