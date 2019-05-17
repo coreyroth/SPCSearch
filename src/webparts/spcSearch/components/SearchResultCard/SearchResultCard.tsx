@@ -24,9 +24,12 @@ export class SearchResultCard extends React.Component<ISearchResultCardProps, {
     }
 
     public render(): React.ReactElement<ISearchResultCardProps> {
+        const people: IDocumentCardActivityPerson[] = [
+            { name: this.props.item.Author, profileImageSrc: '' }
+        ];
+        
         return (
             <DocumentCard type={DocumentCardType.normal} onClickHref={this.props.item.Path}>
-                {/* <DocumentCardImage imageSrc={this.props.item.PictureThumbnailURL} /> */}
                 <DocumentCardPreview previewImages={
                     [
                         {
@@ -40,6 +43,7 @@ export class SearchResultCard extends React.Component<ISearchResultCardProps, {
                 } />
                 <DocumentCardDetails>
                     <DocumentCardTitle title={this.props.item.Title}  />
+                    <DocumentCardActivity activity={this.props.item.Description} people={people} />
                 </DocumentCardDetails>
             </DocumentCard>
         )
