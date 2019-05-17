@@ -39,7 +39,8 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
   }
 
   public _pnSearch = async (): Promise<void> => {
-    let results: SearchResults = await this.props.searchService.search(this.state.query);
+    let listUrl: string = 'https://m365x301749.sharepoint.com/sites/Marketing/Lists/Product%20List';
+    let results: SearchResults = await this.props.searchService.productSearch(this.state.query, `{searchTerms} ${listUrl}`);
     this.setState({
       searchResults: results.PrimarySearchResults
     });

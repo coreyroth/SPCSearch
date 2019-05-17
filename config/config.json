@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/spcSearch/SpcSearchWebPart.manifest.json"
         }
       ]
+    },
+    "product-search-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/productSearch/ProductSearchWebPart.js",
+          "manifest": "./src/webparts/productSearch/ProductSearchWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "SpcSearchWebPartStrings": "lib/webparts/spcSearch/loc/{locale}.js"
+    "SpcSearchWebPartStrings": "lib/webparts/spcSearch/loc/{locale}.js",
+    "ProductSearchWebPartStrings": "lib/webparts/productSearch/loc/{locale}.js"
   }
 }
