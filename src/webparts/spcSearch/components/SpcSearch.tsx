@@ -1,14 +1,12 @@
 import * as React from 'react';
 import styles from './SpcSearch.module.scss';
 import { ISpcSearchProps } from './ISpcSearchProps';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { List } from 'office-ui-fabric-react/lib/List';
 import { SearchResults, SearchResult } from '@pnp/sp';
 
-import { SearchResultCard } from './SearchResultCard';
-
+import { SearchResultCard } from './../../../components/SearchResultCard';
 
 export default class SpcSearch extends React.Component<ISpcSearchProps, {
   query: string;

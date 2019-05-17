@@ -17,11 +17,20 @@
           "manifest": "./src/webparts/productSearch/ProductSearchWebPart.manifest.json"
         }
       ]
+    },
+    "paged-search-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/pagedSearch/PagedSearchWebPart.js",
+          "manifest": "./src/webparts/pagedSearch/PagedSearchWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "SpcSearchWebPartStrings": "lib/webparts/spcSearch/loc/{locale}.js",
-    "ProductSearchWebPartStrings": "lib/webparts/productSearch/loc/{locale}.js"
+    "ProductSearchWebPartStrings": "lib/webparts/productSearch/loc/{locale}.js",
+    "PagedSearchWebPartStrings": "lib/webparts/pagedSearch/loc/{locale}.js"
   }
 }
