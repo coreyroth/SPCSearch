@@ -1,0 +1,18 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.searchResultCardCompact {
+    .title {
+        @include ms-font-xl;
+        @include ms-fontColor-white;
+      }
+    
+      .subTitle {
+        @include ms-font-l;
+        @include ms-fontColor-white;
+      }
+    
+      .description {
+        @include ms-font-l;
+        @include ms-fontColor-white;
+      }
+}

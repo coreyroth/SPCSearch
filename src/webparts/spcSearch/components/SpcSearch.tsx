@@ -7,6 +7,7 @@ import { List } from 'office-ui-fabric-react/lib/List';
 import { SearchResults, SearchResult } from '@pnp/sp';
 
 import { SearchResultCard } from './../../../components/SearchResultCard';
+import { SearchResultCardCompact } from './../../../components/SearchResultCardCompact';
 
 export default class SpcSearch extends React.Component<ISpcSearchProps, {
   query: string;
@@ -37,8 +38,7 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
   }
 
   public _pnSearch = async (): Promise<void> => {
-    let listUrl: string = 'https://m365x301749.sharepoint.com/sites/Marketing/Lists/Product%20List';
-    let results: SearchResults = await this.props.searchService.productSearch(this.state.query, `{searchTerms} ${listUrl}`);
+    let results: SearchResults = await this.props.searchService.search(this.state.query);
     this.setState({
       searchResults: results.PrimarySearchResults
     });
@@ -48,6 +48,11 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
     // return <div>
     //   {item.Title}
     // </div>;
-    return <SearchResultCard item={item} />;
+    // return <div className={styles.marginTop}>
+    //   <SearchResultCard item={item} />
+    //   </div>;
+    return <div className={styles.marginTop}>
+    <SearchResultCardCompact item={item} />
+    </div>;  
   }
 }
