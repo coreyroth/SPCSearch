@@ -38,7 +38,7 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
   }
 
   public _pnSearch = async (): Promise<void> => {
-    let results: SearchResults = await this.props.searchService.search(this.state.query);
+    let results: SearchResults = await this.props.searchService.searchWithCachingCustom(this.state.query;
     this.setState({
       searchResults: results.PrimarySearchResults
     });

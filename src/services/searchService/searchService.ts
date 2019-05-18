@@ -43,11 +43,17 @@ export class SearchService {
           }
     }
 
-    public async searchWithCaching(query: string): Promise<SearchResults> {
+    public async searchWithCaching(query: string, sort: string, descending: boolean): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.searchWithCaching(
                 <SearchQuery>{
-                    Querytext: query
+                    Querytext: query,
+                    SortList: [
+                        <Sort>{
+                            Property: sort,
+                            Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
+                        }
+                    ]
                 }
             );
 
@@ -60,15 +66,22 @@ export class SearchService {
           }
     }
 
-    public async searchWithCachingCustom(query: string, minutes: number): Promise<SearchResults> {
+    public async searchWithCachingCustom(query: string, sort: string, descending: boolean, minutes: number): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.searchWithCaching(
                 <SearchQuery>{
-                    Querytext: query
+                    Querytext: query,
+                    SortList: [
+                        <Sort>{
+                            Property: sort,
+                            Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
+                        }
+                    ]
                 },
                 {
                     key: `my-key-${query}`,
-                    expiration: dateAdd(new Date(), "minute", minutes)
+                    expiration: dateAdd(new Date(), "minute", minutes),
+                    storeName: 'local'
                 }
             );
 
