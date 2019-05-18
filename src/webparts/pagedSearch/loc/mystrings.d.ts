@@ -4,6 +4,7 @@ declare interface IPagedSearchWebPartStrings {
   DescriptionFieldLabel: string;
   PreviousButton: string;
   NextButton: string;
+  NoSearchResults: string;
 }
 
 declare module 'PagedSearchWebPartStrings' {

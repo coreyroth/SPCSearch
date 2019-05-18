@@ -7,6 +7,8 @@ import * as strings from 'PagedSearchWebPartStrings';
 
 import { SearchResults, SearchResult } from '@pnp/sp';
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
+import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import { SearchResultCard } from './../../../components/SearchResultCard';
 
@@ -26,7 +28,7 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
       page: 1,
       lastPage: undefined,
       searchResults: undefined,
-      loading: true
+      loading: false
     };
   }
 
@@ -51,6 +53,14 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
             </div>
           }
         </Stack>
+        {this.state.searchResults && this.state.searchResults.PrimarySearchResults && this.state.searchResults.PrimarySearchResults.length == 0 &&
+            <MessageBar messageBarType={MessageBarType.warning}>
+              {strings.NoSearchResults}
+            </MessageBar>
+          }
+        {this.state.loading && 
+          <Spinner size={SpinnerSize.medium} />
+        }
         <div>
           {this.state.searchResults && this.state.page > 1 && (
             <DefaultButton
