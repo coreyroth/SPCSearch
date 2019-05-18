@@ -62,7 +62,7 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
           <Spinner size={SpinnerSize.medium} />
         }
         <div>
-          {this.state.searchResults && this.state.page > 1 && (
+          {this.state.searchResults && this.state.searchResults.PrimarySearchResults && this.state.page > 1 && (
             <DefaultButton
             iconProps={{ iconName: 'ChevronLeft' }}
             text={strings.PreviousButton}
@@ -71,7 +71,7 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
             onClick={this._onPreviousClicked}
           />
           )}
-           {this.state.searchResults && this.state.page < this.state.lastPage && (
+           {this.state.searchResults && this.state.searchResults.PrimarySearchResults && this.state.page < this.state.lastPage && (
             <DefaultButton
             iconProps={{ iconName: 'ChevronRight' }}
             text={strings.NextButton}
