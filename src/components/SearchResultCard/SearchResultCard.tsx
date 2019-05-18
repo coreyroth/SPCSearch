@@ -31,7 +31,7 @@ export class SearchResultCard extends React.Component<ISearchResultCardProps, {
                     [
                         {
                             name: this.props.item.Title,
-                            previewImageSrc: this.props.item.PictureThumbnailURL,
+                            previewImageSrc: (this.props.item.PictureThumbnailURL) ? this.props.item.PictureThumbnailURL : this.props.item.ServerRedirectedPreviewURL,
                             imageFit: ImageFit.cover,
                             width: 318,
                             height: 196
