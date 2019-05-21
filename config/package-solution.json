@@ -5,7 +5,8 @@
     "id": "b6ab7fba-fdcc-4da6-9f35-e2bf7b7c53bb",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "skipFeatureDeployment": true
   },
   "paths": {
     "zippedPackage": "solution/spc-search.sppkg"
