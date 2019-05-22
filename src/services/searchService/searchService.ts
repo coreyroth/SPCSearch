@@ -119,7 +119,8 @@ export class SearchService {
             let results: SearchResults = await sp.search(
                 <SearchQuery>{
                     Querytext: query,
-                    QueryTemplate: queryTemplate
+                    QueryTemplate: queryTemplate,
+                    SelectProperties: ['Title', 'Author', 'Write', 'ProductCode', 'ProductColor']
                 }
             );
 
