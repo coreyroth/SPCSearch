@@ -120,7 +120,8 @@ export class SearchService {
                 <SearchQuery>{
                     Querytext: query,
                     QueryTemplate: queryTemplate,
-                    SelectProperties: ['Title', 'Author', 'Write', 'ProductCode', 'ProductColor']
+                    SelectProperties: ['Title', 'Author', 'Write', 'ProductCode', 'ProductColor'],
+                    RowLimit: 50,
                 }
             );
 

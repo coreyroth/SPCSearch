@@ -17,10 +17,12 @@ export default class ProductSearch extends React.Component<IProductSearchProps, 
   constructor(props: IProductSearchProps) {
     super(props);
     this.state = {
-        query: undefined,
+        query: '',
         searchResults: undefined,
         loading: false
     };
+
+    this._onSearch();
 }
   public render(): React.ReactElement<IProductSearchProps> {
     this._columns = [
