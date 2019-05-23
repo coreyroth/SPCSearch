@@ -27,7 +27,7 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
   public render(): React.ReactElement<ISpcSearchProps> {
     return (
       <div className={ styles.spcSearch }>
-        <SearchBox value={this.state.query} onSearch={this._pnSearch}
+        <SearchBox value={this.state.query} onSearch={this._onSearch}
           onChange={newValue => {
             this.setState({
               query: newValue
@@ -44,22 +44,22 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
     );
   }
 
-  public _pnSearch = async (): Promise<void> => {
+  public _onSearch = async (): Promise<void> => {
     let results: SearchResults = await this.props.searchService.search(this.state.query);
     this.setState({
       searchResults: results.PrimarySearchResults
     });
   }
-
+  
   private _onRenderCell = (item: any, index: number | undefined): JSX.Element => {
-    // return <div>
-    //   {item.Title}
-    // </div>;
+    return <div>
+      {item.Title}
+    </div>;
     // return <div className={styles.marginTop}>
     //   <SearchResultCard item={item} />
     //   </div>;
-    return <div className={styles.marginTop}>
-    <SearchResultCardCompact item={item} />
-    </div>;  
+    // return <div className={styles.marginTop}>
+    // <SearchResultCardCompact item={item} />
+    // </div>;  
   }
 }
