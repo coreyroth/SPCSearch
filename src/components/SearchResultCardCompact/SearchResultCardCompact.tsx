@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ISearchResultCardCompactProps } from './ISearchResultCardCompactProps';
 import * as strings from 'SpcSearchWebPartStrings';
-import styles from './SearchResultCard.module.scss';
+import styles from './SearchResultCardCompact.module.scss';
 
 import {
     DocumentCard,

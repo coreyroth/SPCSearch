@@ -6,6 +6,7 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
+import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'SpcSearchWebPartStrings';
 import SpcSearch from './components/SpcSearch';
@@ -17,7 +18,18 @@ export interface ISpcSearchWebPartProps {
 }
 
 export default class SpcSearchWebPart extends BaseClientSideWebPart<ISpcSearchWebPartProps> {
+  protected onInit(): Promise<void> {
 
+    return super.onInit().then(_ => {
+
+      // other init code may be present
+
+      pnpSetup({
+        spfxContext: this.context
+      });
+    });
+  }
+  
   public render(): void {
     let searchService: SearchService = new SearchService();
 

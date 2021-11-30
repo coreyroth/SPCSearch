@@ -5,7 +5,7 @@ import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as strings from 'PagedSearchWebPartStrings';
 
-import { SearchResults, SearchResult } from '@pnp/sp';
+import { SearchResults, ISearchResult } from '@pnp/sp/search';
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
@@ -35,13 +35,7 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
   public render(): React.ReactElement<IPagedSearchProps> {
     return (
       <div className={styles.pagedSearch}>
-        <SearchBox value={this.state.query} onSearch={this._pnSearch}
-          onChange={newValue => {
-            this.setState({
-              query: newValue
-            });
-          }}
-        />
+        <SearchBox value={this.state.query} onSearch={this._onSearch} />
         <Stack padding={10}>
           {!this.state.loading && this.state.searchResults &&
             <div>
@@ -85,8 +79,9 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
     );
   }
 
-  public _pnSearch = async (): Promise<void> => {
-    this.setState({
+  public _onSearch = async (newValue): Promise<void> => {
+    await this.setState({
+      query: newValue,
       loading: true
     });
     let results: SearchResults = await this.props.searchService.searchWithPaging(this.state.query, (this.state.page - 1) * this.defaultRowLimit, this.defaultRowLimit);

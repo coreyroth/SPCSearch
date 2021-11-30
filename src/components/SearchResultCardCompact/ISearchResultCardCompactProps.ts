@@ -1,5 +1,6 @@
-import { SearchResult } from "@pnp/sp";
+import "@pnp/sp/search";
+import { ISearchResult } from "@pnp/sp/search";
 
 export interface ISearchResultCardCompactProps {
-    item: SearchResult;
+    item: ISearchResult;
 }

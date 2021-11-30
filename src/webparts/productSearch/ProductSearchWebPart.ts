@@ -6,6 +6,7 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
+import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'ProductSearchWebPartStrings';
 import ProductSearch from './components/ProductSearch';
@@ -17,8 +18,17 @@ export interface IProductSearchWebPartProps {
 }
 
 export default class ProductSearchWebPart extends BaseClientSideWebPart<IProductSearchWebPartProps> {
+  protected onInit(): Promise<void> {
 
-  public render(): void {
+    return super.onInit().then(_ => {
+
+      // other init code may be present
+
+      pnpSetup({
+        spfxContext: this.context
+      });
+    });
+  }  public render(): void {
     let searchService: SearchService = new SearchService();
 
     const element: React.ReactElement<IProductSearchProps > = React.createElement(
