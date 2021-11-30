@@ -2,7 +2,7 @@
   "@microsoft/generator-sharepoint": {
     "isCreatingSolution": false,
     "environment": "spo",
-    "version": "1.8.2",
+    "version": "1.13.1",
     "libraryName": "spc-search",
     "libraryId": "b6ab7fba-fdcc-4da6-9f35-e2bf7b7c53bb",
     "packageManager": "npm",

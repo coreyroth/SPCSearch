@@ -5,7 +5,8 @@ import * as strings from 'SpcSearchWebPartStrings';
 
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { List } from 'office-ui-fabric-react/lib/List';
-import { SearchResults, SearchResult } from '@pnp/sp';
+import "@pnp/sp/search";
+import { SearchResults, ISearchResult } from '@pnp/sp/search';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 
 import { SearchResultCard } from './../../../components/SearchResultCard';
@@ -13,7 +14,7 @@ import { SearchResultCardCompact } from './../../../components/SearchResultCardC
 
 export default class SpcSearch extends React.Component<ISpcSearchProps, {
   query: string;
-  searchResults: SearchResult[]
+  searchResults: ISearchResult[]
 }> {
 
   constructor(props: ISpcSearchProps) {
@@ -28,11 +29,6 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
     return (
       <div className={ styles.spcSearch }>
         <SearchBox value={this.state.query} onSearch={this._onSearch}
-          onChange={newValue => {
-            this.setState({
-              query: newValue
-            });
-          }}
           />
           <List items={this.state.searchResults} onRenderCell={this._onRenderCell}></List>
           {this.state.searchResults && this.state.searchResults.length == 0 &&
@@ -44,7 +40,10 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
     );
   }
 
-  public _onSearch = async (): Promise<void> => {
+  public _onSearch = async (newValue): Promise<void> => {
+    await this.setState({
+      query: newValue
+    });
     let results: SearchResults = await this.props.searchService.search(this.state.query);
     this.setState({
       searchResults: results.PrimarySearchResults

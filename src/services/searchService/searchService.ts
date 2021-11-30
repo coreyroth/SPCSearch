@@ -1,4 +1,6 @@
-import { sp, SearchQuery, SearchResults, Sort, SortDirection  } from "@pnp/sp";
+import { sp } from "@pnp/sp";
+import "@pnp/sp/search";
+import { ISearchQuery, SearchResults, ISort, SortDirection } from "@pnp/sp/search";
 import { dateAdd } from "@pnp/common";
 
 export class SearchService {
@@ -6,7 +8,7 @@ export class SearchService {
     public async search(query: string): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.search(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query
                 }
             );
@@ -23,10 +25,10 @@ export class SearchService {
     public async searchWithSorting(query: string, sort: string, descending: boolean): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.search(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query,
                     SortList: [
-                        <Sort>{
+                        <ISort>{
                             Property: sort,
                             Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
                         }
@@ -46,10 +48,10 @@ export class SearchService {
     public async searchWithCaching(query: string, sort: string, descending: boolean): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.searchWithCaching(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query,
                     SortList: [
-                        <Sort>{
+                        <ISort>{
                             Property: sort,
                             Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
                         }
@@ -69,10 +71,10 @@ export class SearchService {
     public async searchWithCachingCustom(query: string, sort: string, descending: boolean, minutes: number): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.searchWithCaching(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query,
                     SortList: [
-                        <Sort>{
+                        <ISort>{
                             Property: sort,
                             Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
                         }
@@ -97,7 +99,7 @@ export class SearchService {
     public async searchWithPaging(query: string, startRow: number, rowsPerPage: number): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.search(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query,
                     RowsPerPage: rowsPerPage,
                     RowLimit: rowsPerPage,
@@ -117,7 +119,7 @@ export class SearchService {
     public async productSearch(query: string, queryTemplate: string): Promise<SearchResults> {
         try {
             let results: SearchResults = await sp.search(
-                <SearchQuery>{
+                <ISearchQuery>{
                     Querytext: query,
                     QueryTemplate: queryTemplate,
                     SelectProperties: ['Title', 'Author', 'Write', 'ProductCode', 'ProductColor'],
