@@ -6,12 +6,12 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'ProductSearchWebPartStrings';
 import ProductSearch from './components/ProductSearch';
 import { IProductSearchProps } from './components/IProductSearchProps';
 import { SearchService } from './../../services/searchService/searchService';
+import { getSP } from './../../services/pnpjsConfig';
 
 export interface IProductSearchWebPartProps {
   description: string;
@@ -21,12 +21,8 @@ export default class ProductSearchWebPart extends BaseClientSideWebPart<IProduct
   protected onInit(): Promise<void> {
 
     return super.onInit().then(_ => {
+      getSP(this.context);
 
-      // other init code may be present
-
-      pnpSetup({
-        spfxContext: this.context
-      });
     });
   }  public render(): void {
     let searchService: SearchService = new SearchService();

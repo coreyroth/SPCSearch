@@ -1,13 +1,17 @@
-import { sp } from "@pnp/sp";
-import "@pnp/sp/search";
+import { getSP } from "./../pnpjsConfig";
+import { SPFI } from "@pnp/sp";
 import { ISearchQuery, SearchResults, ISort, SortDirection } from "@pnp/sp/search";
-import { dateAdd } from "@pnp/common";
 
 export class SearchService {
+    private _sp: SPFI;
 
+    constructor() {
+        this._sp = getSP();
+    }
     public async search(query: string): Promise<SearchResults> {
         try {
-            let results: SearchResults = await sp.search(
+            console.log('SP - ', this._sp);
+            let results: SearchResults = await this._sp.search(
                 <ISearchQuery>{
                     Querytext: query
                 }
@@ -24,7 +28,7 @@ export class SearchService {
 
     public async searchWithSorting(query: string, sort: string, descending: boolean): Promise<SearchResults> {
         try {
-            let results: SearchResults = await sp.search(
+            let results: SearchResults = await this._sp.search(
                 <ISearchQuery>{
                     Querytext: query,
                     SortList: [
@@ -33,57 +37,6 @@ export class SearchService {
                             Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
                         }
                     ]
-                }
-            );
-
-            console.log("Results - ", results);
-            return results;
-        }
-        catch (error) {
-            console.error("Error executing search query - ", error);
-            throw error;
-          }
-    }
-
-    public async searchWithCaching(query: string, sort: string, descending: boolean): Promise<SearchResults> {
-        try {
-            let results: SearchResults = await sp.searchWithCaching(
-                <ISearchQuery>{
-                    Querytext: query,
-                    SortList: [
-                        <ISort>{
-                            Property: sort,
-                            Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
-                        }
-                    ]
-                }
-            );
-
-            console.log("Results - ", results);
-            return results;
-        }
-        catch (error) {
-            console.error("Error executing search query - ", error);
-            throw error;
-          }
-    }
-
-    public async searchWithCachingCustom(query: string, sort: string, descending: boolean, minutes: number): Promise<SearchResults> {
-        try {
-            let results: SearchResults = await sp.searchWithCaching(
-                <ISearchQuery>{
-                    Querytext: query,
-                    SortList: [
-                        <ISort>{
-                            Property: sort,
-                            Direction: (descending) ? SortDirection.Descending : SortDirection.Ascending
-                        }
-                    ]
-                },
-                {
-                    key: `my-key-${query}`,
-                    expiration: dateAdd(new Date(), "minute", minutes),
-                    storeName: 'local'
                 }
             );
 
@@ -98,7 +51,7 @@ export class SearchService {
 
     public async searchWithPaging(query: string, startRow: number, rowsPerPage: number): Promise<SearchResults> {
         try {
-            let results: SearchResults = await sp.search(
+            let results: SearchResults = await this._sp.search(
                 <ISearchQuery>{
                     Querytext: query,
                     RowsPerPage: rowsPerPage,
@@ -118,7 +71,7 @@ export class SearchService {
 
     public async productSearch(query: string, queryTemplate: string): Promise<SearchResults> {
         try {
-            let results: SearchResults = await sp.search(
+            let results: SearchResults = await this._sp.search(
                 <ISearchQuery>{
                     Querytext: query,
                     QueryTemplate: queryTemplate,

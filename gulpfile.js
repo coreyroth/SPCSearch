@@ -12,5 +12,7 @@ build.rig.getTasks = function () {
 
     return result;
 };
+// added for PnP 3.0.0 / TS 4.2
+build.tslintCmd.enabled = false;
 
 build.initialize(gulp);
