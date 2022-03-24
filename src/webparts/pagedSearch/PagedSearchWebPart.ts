@@ -6,12 +6,12 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'PagedSearchWebPartStrings';
 import PagedSearch from './components/PagedSearch';
 import { IPagedSearchProps } from './components/IPagedSearchProps';
 import { SearchService } from './../../services/searchService/searchService';
+import { getSP } from './../../services/pnpjsConfig';
 
 export interface IPagedSearchWebPartProps {
   description: string;
@@ -21,12 +21,8 @@ export default class PagedSearchWebPart extends BaseClientSideWebPart<IPagedSear
   protected onInit(): Promise<void> {
 
     return super.onInit().then(_ => {
+      getSP(this.context);
 
-      // other init code may be present
-
-      pnpSetup({
-        spfxContext: this.context
-      });
     });
   }
   

@@ -6,12 +6,12 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { setup as pnpSetup } from "@pnp/common";
 
 import * as strings from 'SpcSearchWebPartStrings';
 import SpcSearch from './components/SpcSearch';
 import { ISpcSearchProps } from './components/ISpcSearchProps';
 import { SearchService } from './../../services/searchService/searchService';
+import { getSP } from './../../services/pnpjsConfig';
 
 export interface ISpcSearchWebPartProps {
   description: string;
@@ -22,11 +22,7 @@ export default class SpcSearchWebPart extends BaseClientSideWebPart<ISpcSearchWe
 
     return super.onInit().then(_ => {
 
-      // other init code may be present
-
-      pnpSetup({
-        spfxContext: this.context
-      });
+      getSP(this.context);
     });
   }
   
