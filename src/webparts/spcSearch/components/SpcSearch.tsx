@@ -12,6 +12,8 @@ import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBa
 import { SearchResultCard } from './../../../components/SearchResultCard';
 import { SearchResultCardCompact } from './../../../components/SearchResultCardCompact';
 
+import { getSP } from './../../../services/pnpjsConfig';
+
 export default class SpcSearch extends React.Component<ISpcSearchProps, {
   query: string;
   searchResults: ISearchResult[]
@@ -19,6 +21,7 @@ export default class SpcSearch extends React.Component<ISpcSearchProps, {
 
   constructor(props: ISpcSearchProps) {
     super(props);
+    getSP();
     this.state = {
         query: undefined,
         searchResults: undefined
