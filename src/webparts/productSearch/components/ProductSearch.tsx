@@ -6,6 +6,7 @@ import { SearchResults, ISearchResult } from '@pnp/sp/search';
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 
+import { getSP } from './../../../services/pnpjsConfig';
 
 export default class ProductSearch extends React.Component<IProductSearchProps, {
   query: string,
@@ -16,6 +17,7 @@ export default class ProductSearch extends React.Component<IProductSearchProps, 
 
   constructor(props: IProductSearchProps) {
     super(props);
+    getSP();
     this.state = {
         query: '',
         searchResults: undefined,

@@ -9,6 +9,7 @@ import { SearchResults, ISearchResult } from '@pnp/sp/search';
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { getSP } from './../../../services/pnpjsConfig';
 
 import { SearchResultCard } from './../../../components/SearchResultCard';
 
@@ -23,6 +24,8 @@ export default class PagedSearch extends React.Component<IPagedSearchProps, {
 
   constructor(props: IPagedSearchProps) {
     super(props);
+    getSP();
+
     this.state = {
       query: undefined,
       page: 1,
